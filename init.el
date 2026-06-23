@@ -11,7 +11,7 @@
 (global-display-line-numbers-mode +1)
 (require 'package)
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
-                         ("gnu" . "https://gnu.org")))
+                         ("gnu" . "https://elpa.gnu.org/packages/")))
 (package-initialize)
 (unless package-archive-contents
   (package-refresh-contents))
@@ -37,18 +37,36 @@
   (setq ivy-use-virtual-buffers t
         ivy-count-format "%d/%d "
         ivy-initial-inputs-alist nil))
-'(use-package evil)
+(use-package evil)
 (evil-mode 1)
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1))
 (electric-pair-mode 1)
+(use-package corfu
+  :ensure t
+  :custom
+  (corfu-auto t)
+  (corfu-auto-delay 0.2)
+  (corfu-auto-prefix 1)
+  (corfu-cycle t)
+  :init
+  (global-corfu-mode))
+
+(use-package cape
+  :ensure t)
+
+(with-eval-after-load 'eglot
+  (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster))
+
+(add-hook 'c-mode-hook 'eglot-ensure)
+(add-hook 'c++-mode-hook 'eglot-ensure)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(counsel doom-modeline evil)))
+ '(package-selected-packages nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
