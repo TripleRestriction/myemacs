@@ -5,6 +5,7 @@
 (tooltip-mode -1)
 (set-fringe-mode 10)
 (menu-bar-mode -1)
+(setq make-backup-files nil)
 (setq scroll-conservatively 101)
 (set-face-attribute 'default nil :family "JetBrains Mono Nerd Font" :height 120 :weight 'normal)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
