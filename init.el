@@ -11,7 +11,8 @@
 (global-display-line-numbers-mode +1)
 (require 'package)
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
-                         ("gnu" . "https://elpa.gnu.org/packages/")))
+                         ("gnu" . "https://elpa.gnu.org/packages/")
+						  ("nongnu" . "https://elpa.nongnu.org/nongnu/")))
 (package-initialize)
 (unless package-archive-contents
   (package-refresh-contents))
@@ -47,7 +48,7 @@
   :ensure t
   :custom
   (corfu-auto t)
-  (corfu-auto-delay 0.2)
+  (corfu-auto-delay 0)
   (corfu-auto-prefix 1)
   (corfu-cycle t)
   :init
@@ -55,10 +56,13 @@
 
 (use-package cape
   :ensure t)
-
+(use-package corfu-terminal
+  :ensure t
+  :unless (display-graphic-p)
+  :config
+  (corfu-terminal-mode +1))
 (with-eval-after-load 'eglot
   (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster))
-
 (add-hook 'c-mode-hook 'eglot-ensure)
 (add-hook 'c++-mode-hook 'eglot-ensure)
 (custom-set-variables
