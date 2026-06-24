@@ -1,5 +1,5 @@
-(load-theme 'wombat t)
 (setq inhibit-startup-message t)
+(global-hl-line-mode +1)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (tooltip-mode -1)
@@ -44,6 +44,8 @@
         ivy-count-format "%d/%d "
         ivy-initial-inputs-alist nil))
 (use-package evil)
+(use-package doom-themes)
+(load-theme 'doom-sourcerer t)
 (evil-mode 1)
 (use-package doom-modeline
   :ensure t
@@ -53,8 +55,8 @@
   :ensure t
   :custom
   (corfu-auto t)
-  (corfu-auto-delay 0)
-  (corfu-auto-prefix 1)
+  (corfu-auto-delay 0.2)
+  (corfu-auto-prefix 3)
   (corfu-cycle t)
   :init
   (global-corfu-mode))
