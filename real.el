@@ -5,6 +5,7 @@
 (tooltip-mode -1)
 (set-fringe-mode 10)
 (menu-bar-mode -1)
+(which-key-mode)
 (setq make-backup-files nil)
 (setq scroll-conservatively 101)
 (setq-default indent-tabs-mode nil)
