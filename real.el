@@ -45,7 +45,7 @@
         ivy-initial-inputs-alist nil))
 (use-package evil)
 (use-package doom-themes)
-(load-theme 'doom-sourcerer t)
+(load-theme 'doom-tomorrow-night t)
 (evil-mode 1)
 (use-package doom-modeline
   :ensure t
