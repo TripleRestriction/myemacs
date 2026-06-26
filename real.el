@@ -1,4 +1,5 @@
 (setq inhibit-startup-message t)
+(setq package-install-upgrade-built-in t)
 (global-hl-line-mode +1)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
@@ -43,7 +44,21 @@
   (setq ivy-use-virtual-buffers t
         ivy-count-format "%d/%d "
         ivy-initial-inputs-alist nil))
-(use-package evil)
+(setq evil-want-keybinding nil)
+(use-package evil
+  :ensure t)
+(use-package evil-collection
+  :ensure t
+  :after evil
+  :config
+  (evil-collection-init))
+(use-package elfeed
+  :ensure t
+  :bind ("C-x w" . elfeed))
+(setq elfeed-feeds
+      '("https://www.bleepingcomputer.com/feed"
+        "https://cyberscoop.com/feed/"
+        "https://krebsonsecurity.com/feed/"))
 (use-package doom-themes)
 (load-theme 'doom-tomorrow-night t)
 (evil-mode 1)
