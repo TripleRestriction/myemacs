@@ -55,12 +55,13 @@
 (use-package elfeed
   :ensure t
   :bind ("C-x w" . elfeed))
+
 (setq elfeed-feeds
       '("https://www.bleepingcomputer.com/feed"
         "https://cyberscoop.com/feed/"
         "https://krebsonsecurity.com/feed/"))
 (use-package doom-themes)
-(load-theme 'doom-tomorrow-night t)
+(load-theme 'doom-1337 t)
 (evil-mode 1)
 (use-package doom-modeline
   :ensure t
@@ -75,7 +76,24 @@
   (corfu-cycle t)
   :init
   (global-corfu-mode))
+
+(use-package project)
+
+(defun project-find-go-module (dir)
+  (when-let ((root (locate-dominating-file dir "go.mod")))
+    (cons 'go-module root)))
+
+(cl-defmethod project-root ((project (head go-module)))
+  (cdr project))
+
+(add-hook 'project-find-functions #'project-find-go-module)
+(use-package company)
+(use-package yasnippet)
+(use-package go-mode)
 (setq-default c-basic-offset 4)
 (setq-default c-default-style "linux")
+
 (add-hook 'c-mode-hook 'eglot-ensure)
 (add-hook 'c++-mode-hook 'eglot-ensure)
+(add-hook 'python-mode-hook 'eglot-ensure) ; install pylsp plugins for full functionality
+(add-hook 'go-mode-hook 'eglot-ensure) ; install gopls
