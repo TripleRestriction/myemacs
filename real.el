@@ -63,11 +63,10 @@
       '("https://www.bleepingcomputer.com/feed"
         "https://cyberscoop.com/feed/"
         "https://krebsonsecurity.com/feed/"))
-(use-package doom-themes)
 (use-package base16-theme
   :ensure t
   :config
-  (load-theme 'base16-mountain t))
+  (load-theme 'base16-default-dark t))
 (evil-mode 1)
 (use-package doom-modeline
   :ensure t
