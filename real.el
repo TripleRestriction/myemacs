@@ -9,12 +9,15 @@
 (which-key-mode)
 (setq make-backup-files nil)
 (setq scroll-conservatively 101)
+(setq scroll-margin 10)
+(setq scroll-conservatively 101)
 (setq-default indent-tabs-mode nil)
-(set-face-attribute 'default nil :family "JetBrains Mono Nerd Font" :height 120 :weight 'normal)
+(set-face-attribute 'default nil :family "3270 Nerd Font Mono" :height 170 :weight 'bold)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode +1)
 (setq display-line-numbers-width-start t)
+(setq display-line-numbers-width 5)
 (require 'package)
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
                          ("gnu" . "https://elpa.gnu.org/packages/")
@@ -61,7 +64,11 @@
         "https://cyberscoop.com/feed/"
         "https://krebsonsecurity.com/feed/"))
 (use-package doom-themes)
-(load-theme 'doom-1337 t)
+(use-package doom-themes)
+(use-package base16-theme
+  :ensure t
+  :config
+  (load-theme 'base16-default-dark t))
 (evil-mode 1)
 (use-package doom-modeline
   :ensure t
