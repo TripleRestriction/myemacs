@@ -8,16 +8,14 @@
 (menu-bar-mode -1)
 (which-key-mode)
 (setq make-backup-files nil)
+(setq-default display-line-numbers-width 5)
 (setq scroll-conservatively 101)
 (setq scroll-margin 10)
 (setq scroll-conservatively 101)
-(setq-default indent-tabs-mode nil)
 (set-face-attribute 'default nil :family "3270 Nerd Font Mono" :height 170 :weight 'bold)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode +1)
-(setq display-line-numbers-width-start t)
-(setq display-line-numbers-width 5)
 (require 'package)
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
                          ("gnu" . "https://elpa.gnu.org/packages/")
@@ -83,10 +81,14 @@
   (global-corfu-mode))
 
 (use-package project)
+(use-package eglot-java
+  :ensure t
+  :hook (java-mode . eglot-java-mode))
 
 (defun project-find-go-module (dir)
   (when-let ((root (locate-dominating-file dir "go.mod")))
     (cons 'go-module root)))
+
 
 (cl-defmethod project-root ((project (head go-module)))
   (cdr project))
@@ -95,8 +97,6 @@
 (use-package company)
 (use-package yasnippet)
 (use-package go-mode)
-(setq-default c-basic-offset 4)
-(setq-default c-default-style "linux")
 
 (add-hook 'c-mode-hook 'eglot-ensure)
 (add-hook 'c++-mode-hook 'eglot-ensure)
