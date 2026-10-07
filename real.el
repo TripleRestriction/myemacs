@@ -19,7 +19,7 @@
 (require 'package)
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
                          ("gnu" . "https://elpa.gnu.org/packages/")
-						  ("nongnu" . "https://elpa.nongnu.org/nongnu/")))
+			 ("nongnu" . "https://elpa.nongnu.org/nongnu/")))
 (package-initialize)
 (unless package-archive-contents
   (package-refresh-contents))
@@ -58,9 +58,10 @@
   :bind ("C-x w" . elfeed))
 
 (setq elfeed-feeds
-      '("https://www.bleepingcomputer.com/feed"
-        "https://cyberscoop.com/feed/"
-        "https://krebsonsecurity.com/feed/"))
+      '("http://googleprojectzero.blogspot.com/feeds/posts/default"
+	"https://blog.quarkslab.com/feeds/all.rss.xml"
+	"https://pwning.tech/rss/"
+	"https://starlabs.sg/index.xml"))
 (use-package base16-theme
   :ensure t
   :config
